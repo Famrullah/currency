@@ -1,4 +1,7 @@
+@import"./assets/stylesheet/style.scss";
+
 .App {
+    @include print-styles($primary-text);
     margin: 0 auto;
-    width: 80%;
+    width: 30%;
 }
