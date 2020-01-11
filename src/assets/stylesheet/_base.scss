@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700');
+
+$monserat:'Montserrat',
+sans-serif;
+$lora:'Lora',
+serif;
+$open-sans: 'Open Sans',
+sans-serif;
+// font
+$primary-text: (color: #666666,
+    font-size: 14px,
+    font-family:$open-sans);
+
+$top-title:(font-family:$monserat,
+    color:#666 // font-weight:600
+);
+
+@mixin print-styles($map) {
+
+    @each $property,
+    $value in $map {
+        #{$property}: $value;
+    }
+}
