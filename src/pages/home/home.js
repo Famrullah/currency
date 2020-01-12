@@ -57,12 +57,46 @@ const Home = () => {
     }
   };
 
+  const removeCurrencyList = e => {
+    isAvailableOptions(e);
+    setCurrencyList(currencyList.filter(item => item.currencyValue !== e));
+  };
+
+  const isAvailableOptions = e => {
+    const { option_rates } = props.state;
+    const disable = option_rates.find(item => item.value === e);
+    disable.isDisabled = false;
+  };
+
+  const currencyFormat = (name, val) => {
+    const options = {
+      style: 'currency',
+      currency: name,
+      maximumFractionDigits: 2,
+      currencyDisplay: 'code'
+    };
+    const format = new Intl.NumberFormat('id-ID', options).format(val);
+    return format;
+  };
+
+  const calculation = currency => {
+    const { rate_list } = state;
+    const rateVal = rate_list.rates[currency].toFixed(2);
+    const result = ammount * Number(rateVal);
+    const format = currencyFormat(currency, result);
+    return format;
+  };
+
   return (
     <React.Fragment>
       <Header />
       <div className="home-layout">
         <BaseCurrency {...props} ammount={e => ammountHandler(e)} />
-        <ListCurrency {...props} />
+        <ListCurrency
+          {...props}
+          remove={e => removeCurrencyList(e)}
+          calculation={val => calculation(val)}
+        />
         <InputOptionCurrency
           {...props}
           onChange={e => handleInputChange(e)}

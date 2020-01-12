@@ -1,25 +1,33 @@
-@import "../../assets/stylesheet/style.scss";
+@import '../../assets/stylesheet/style.scss';
 
 .list-currency-page {
-    @include print-styles($primary-text);
-    margin: 10px 0;
-    font-size: 12px;
+  @include print-styles($primary-text);
+  margin: 10px 0;
+  font-size: 12px;
 }
 
 .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-    .left {}
+  .right {
+    text-align: right;
+  }
 }
 
 .container-list {
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    background: #ffffff;
-    padding: 10px 5px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  padding: 10px 5px;
 }
 
 .italic {
-    font-style: italic;
+  font-style: italic;
+}
+
+.font-trash {
+  padding-top: 5px;
+  font-size: 30px;
+  cursor: pointer;
 }

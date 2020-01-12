@@ -10,7 +10,7 @@ const BaseCurrency = props => {
       </div>
       <input
         type="number"
-        min="0"
+        min="1"
         onChange={props.ammount}
         value={props.propsAmmount}
       />

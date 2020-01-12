@@ -1,7 +1,7 @@
-@import"./assets/stylesheet/style.scss";
+@import './assets/stylesheet/style.scss';
 
 .App {
-    @include print-styles($primary-text);
-    margin: 0 auto;
-    width: 30%;
+  @include print-styles($primary-text);
+  margin: 50px auto;
+  width: 30%;
 }
