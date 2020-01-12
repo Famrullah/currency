@@ -1,4 +1,25 @@
+@import "../../assets/stylesheet/style.scss";
+
 .list-currency-page {
-    //   @include print-styles($primary-text);
-    //   margin-top: 50px;
+    @include print-styles($primary-text);
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .left {}
+}
+
+.container-list {
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    padding: 10px 5px;
+}
+
+.italic {
+    font-style: italic;
 }

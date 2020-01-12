@@ -12,7 +12,7 @@ export default function InputCurrency(props) {
         value={selected}
       />
       <div className="add-form">
-        <button className="btn-add__currency" onClick={props.disableOptions}>
+        <button className="btn-add__currency" onClick={props.addCurrencyList}>
           Submit
         </button>
         <div className="clear"></div>

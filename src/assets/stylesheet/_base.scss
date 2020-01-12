@@ -22,6 +22,10 @@ $top-title:(font-family:$monserat,
     color:#666 // font-weight:600
 );
 
+h5 {
+    font-size: 14px;
+}
+
 @mixin print-styles($map) {
 
     @each $property,

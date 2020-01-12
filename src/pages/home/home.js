@@ -12,6 +12,7 @@ const Home = () => {
   const { state, dispatch } = useContext(Store);
   const [selectedOption, setSelectedOption] = useState(null);
   const [ammount, setAmmountValue] = useState(1);
+  const [currencyList, setCurrencyList] = useState([]);
 
   useEffect(() => {
     fetchDataAction(dispatch);
@@ -20,7 +21,8 @@ const Home = () => {
   const props = {
     state,
     selected: selectedOption,
-    propsAmmount: ammount
+    propsAmmount: ammount,
+    propsCurrencyList: currencyList
   };
 
   const ammountHandler = e => {
@@ -32,12 +34,26 @@ const Home = () => {
   };
 
   const disableOptions = () => {
+    const selected = props.selected.value;
+    const { option_rates } = props.state;
+    const disable = option_rates.find(item => item.value === selected);
+    disable.isDisabled = true;
+    setSelectedOption(null);
+  };
+
+  const addCurrencyList = () => {
     if (props.selected) {
-      const selected = props.selected.value;
-      const { option_rates } = props.state;
-      const disable = option_rates.find(item => item.value === selected);
-      disable.isDisabled = true;
-      setSelectedOption(null);
+      const arr = [];
+      const selected = props.selected;
+      const { rate_list } = state;
+      const obj = {
+        currencyName: selected.detail,
+        currencyValue: selected.value,
+        rate: rate_list.rates[selected.value]
+      };
+      arr.push(obj);
+      setCurrencyList([...currencyList, ...arr]);
+      disableOptions();
     }
   };
 
@@ -46,12 +62,13 @@ const Home = () => {
       <Header />
       <div className="home-layout">
         <BaseCurrency {...props} ammount={e => ammountHandler(e)} />
+        <ListCurrency {...props} />
         <InputOptionCurrency
           {...props}
           onChange={e => handleInputChange(e)}
           disableOptions={e => disableOptions(e)}
+          addCurrencyList={e => addCurrencyList(e)}
         />
-        <ListCurrency {...props} />
       </div>
     </React.Fragment>
   );
