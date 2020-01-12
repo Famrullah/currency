@@ -18,8 +18,7 @@ const Home = () => {
   }, [dispatch]);
 
   const props = {
-    rates: state.rate_list,
-    option_rates: state,
+    state,
     selected: selectedOption,
     propsAmmount: ammount
   };
@@ -32,8 +31,14 @@ const Home = () => {
     setSelectedOption(e);
   };
 
-  const clearSelectedValue = e => {
-    setSelectedOption(null);
+  const disableOptions = () => {
+    if (props.selected) {
+      const selected = props.selected.value;
+      const { option_rates } = props.state;
+      const disable = option_rates.find(item => item.value === selected);
+      disable.isDisabled = true;
+      setSelectedOption(null);
+    }
   };
 
   return (
@@ -41,11 +46,12 @@ const Home = () => {
       <Header />
       <div className="home-layout">
         <BaseCurrency {...props} ammount={e => ammountHandler(e)} />
-        <InputOptionCurrency {...props} onChange={e => handleInputChange(e)} />
-        <ListCurrency
+        <InputOptionCurrency
           {...props}
-          clearSelectedValue={e => clearSelectedValue(e)}
+          onChange={e => handleInputChange(e)}
+          disableOptions={e => disableOptions(e)}
         />
+        <ListCurrency {...props} />
       </div>
     </React.Fragment>
   );

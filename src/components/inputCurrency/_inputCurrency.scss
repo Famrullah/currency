@@ -1,5 +1,19 @@
-// @import '../../assets/stylesheet/style.scss';
-
 .input-currency-page {
     margin-top: 20px;
+}
+
+.add-form {
+    .btn-add__currency {
+        box-sizing: border-box;
+        color: #ffffff;
+        background: #c0b283;
+        border: none;
+        float: right;
+        margin: 10px 0;
+        padding: 10px 25px;
+    }
+
+    .clear {
+        clear: both;
+    }
 }

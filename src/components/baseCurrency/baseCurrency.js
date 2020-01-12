@@ -2,7 +2,7 @@ import React from 'react';
 import './_baseCurrency.scss';
 
 const BaseCurrency = props => {
-  console.log(props);
+  //   console.log(props);
   return (
     <div className="input-container">
       <div className="currency">

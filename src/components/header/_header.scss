@@ -3,8 +3,7 @@
 .header {
     @include print-styles($top-title);
     margin-top: 50px;
-    background: #2980b9;
-    border: 1px solid #ddd;
+    background: #373737;
     color: #fff;
     text-align: center;
 }
