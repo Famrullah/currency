@@ -54,18 +54,3 @@ export const optionCurrency = [
     isDisabled: false
   }
 ];
-
-// idr,gdp,eur,sgd
-
-export const initialCurrentData = [
-  {
-    currencyName:'Canadian Dollars',
-    currencyValue:'CAD',
-    rate:1.3071860067
-  },
-  {
-    currencyName:'Canadian Dollars',
-    currencyValue:'CAD',
-    rate:1.3071860067
-  },
-]
