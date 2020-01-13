@@ -27,8 +27,8 @@ const Home = () => {
   }, [dispatch, state]);
 
   const initData = () => {
-    const { option_rates } = state;
     const arr = [];
+    const { option_rates } = state;
     const { rates } = state.rate_list;
     if (rates) {
       initCurrentList.map(item => {
