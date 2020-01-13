@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
 import { Store } from '../../store/reducers/homeReducers';
 import { fetchDataAction } from '../../store/action/homeAction';
 import InputOptionCurrency from '../../components/inputCurrency/inputCurrency';
@@ -11,12 +11,40 @@ import './_home.scss';
 const Home = () => {
   const { state, dispatch } = useContext(Store);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [ammount, setAmmountValue] = useState(1);
+  const [ammount, setAmmountValue] = useState(10);
   const [currencyList, setCurrencyList] = useState([]);
+  const [initCurrentList] = useState([
+    { currencyName: 'Canadian Dollars', currencyValue: 'CAD' },
+    { currencyName: 'United States Dollars', currencyValue: 'USD' },
+    { currencyName: 'Indonesian Rupiah', currencyValue: 'IDR' },
+    { currencyName: 'British Pounds', currencyValue: 'GBP' },
+    { currencyName: 'Singapore Dollars', currencyValue: 'SGD' }
+  ]);
 
   useEffect(() => {
-    fetchDataAction(dispatch);
-  }, [dispatch]);
+    state.rate_list.length === 0 && fetchDataAction(dispatch);
+    initData();
+  }, [dispatch, state]);
+
+  const initData = () => {
+    const { option_rates } = state;
+    const arr = [];
+    const { rates } = state.rate_list;
+    if (rates) {
+      initCurrentList.map(item => {
+        const value = rates[item.currencyValue];
+        const obj = {
+          currencyName: item.currencyName,
+          currencyValue: item.currencyValue,
+          rate: value
+        };
+        const disable = option_rates.find(x => x.value == item.currencyValue);
+        disable.isDisabled = true;
+        arr.push(obj);
+        setCurrencyList([...currencyList, ...arr]);
+      });
+    }
+  };
 
   const props = {
     state,
