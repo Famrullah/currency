@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Store } from '../../store/reducers/homeReducers';
 import { fetchDataAction } from '../../store/action/homeAction';
 import InputOptionCurrency from '../../components/inputCurrency/inputCurrency';
@@ -24,6 +24,7 @@ const Home = () => {
   useEffect(() => {
     state.rate_list.length === 0 && fetchDataAction(dispatch);
     initData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, state]);
 
   const initData = () => {
@@ -31,6 +32,7 @@ const Home = () => {
     const { option_rates } = state;
     const { rates } = state.rate_list;
     if (rates) {
+      // eslint-disable-next-line array-callback-return
       initCurrentList.map(item => {
         const value = rates[item.currencyValue];
         const obj = {
@@ -38,7 +40,7 @@ const Home = () => {
           currencyValue: item.currencyValue,
           rate: value
         };
-        const disable = option_rates.find(x => x.value == item.currencyValue);
+        const disable = option_rates.find(x => x.value === item.currencyValue);
         disable.isDisabled = true;
         arr.push(obj);
         setCurrencyList([...currencyList, ...arr]);
